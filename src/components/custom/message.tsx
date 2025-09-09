@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { cx } from 'classix';
+import { motion } from 'framer-motion';
 import { SparklesIcon } from './icons';
 import { Markdown } from './markdown';
 import { message } from "../../interfaces/interfaces"
