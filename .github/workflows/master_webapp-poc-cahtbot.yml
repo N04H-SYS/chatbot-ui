@@ -26,12 +26,15 @@ jobs:
           npm install
           npm run build
 
-      # 4️⃣ Desplegar a Azure Web App
+      # 4️⃣ Comprimir la carpeta dist para deploy
+      - name: Zip dist folder
+        run: zip -r dist.zip ./dist
+
+      # 5️⃣ Desplegar a Azure Web App
       - name: Deploy to Azure WebApp
         uses: azure/webapps-deploy@v2
         with:
           app-name: "webapp-poc-cahtbot"   # Tu Web App en Azure
           slot-name: "production"
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE }}  # Secreto que creaste en GitHub
-          package: ./dist   # <-- Cambiado a dist porque Vite genera dist por defecto
-          enable-oryx-build: false   # <--- Esto evita que Azure intente build
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE }}
+          package: ./dist.zip   # <-- Ahora apunta al zip, no a dist
