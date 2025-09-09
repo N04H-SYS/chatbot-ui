@@ -1,18 +1,13 @@
-import { useState, useEffect } from 'react';
 import { cx } from 'classix';
-import { motion } from 'framer-motion';
 import { SparklesIcon } from './icons';
 import { Markdown } from './markdown';
-import { message } from "../../interfaces/interfaces"
+import { message } from "../../interfaces/interfaces";
 import { MessageActions } from '@/components/custom/actions';
 
-export const PreviewMessage = ({ message }: { message: message; }) => {
-
+export const PreviewMessage = ({ message }: { message: message }) => {
   return (
-    <motion.div
+    <div
       className="w-full mx-auto max-w-3xl px-4 group/message"
-      initial={{ y: 5, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
       data-role={message.role}
     >
       <div
@@ -38,7 +33,7 @@ export const PreviewMessage = ({ message }: { message: message; }) => {
           )}
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 };
 
@@ -46,10 +41,8 @@ export const ThinkingMessage = () => {
   const role = 'assistant';
 
   return (
-    <motion.div
-      className="w-full mx-auto max-w-3xl px-4 group/message "
-      initial={{ y: 5, opacity: 0 }}
-      animate={{ y: 0, opacity: 1, transition: { delay: 0.2 } }}
+    <div
+      className="w-full mx-auto max-w-3xl px-4 group/message"
       data-role={role}
     >
       <div
@@ -62,6 +55,6 @@ export const ThinkingMessage = () => {
           <SparklesIcon size={14} />
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 };
