@@ -1,0 +1,36 @@
+name: Build and Deploy React App to Azure WebApp
+
+on:
+  push:
+    branches:
+      - master   # Tu repo usa master
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1️⃣ Descargar el repo
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # 2️⃣ Configurar Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'  # Recomendado para React + TypeScript
+
+      # 3️⃣ Instalar dependencias y construir el proyecto
+      - name: Install and Build
+        run: |
+          npm install
+          npm run build
+
+      # 4️⃣ Desplegar a Azure Web App
+      - name: Deploy to Azure WebApp
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: "webapp-poc-cahtbot"   # Tu Web App en Azure
+          slot-name: "production"
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE }}  # Secreto que creaste en GitHub
+          package: ./build   # Carpeta generada por npm run build
