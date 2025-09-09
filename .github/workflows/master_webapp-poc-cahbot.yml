@@ -33,4 +33,4 @@ jobs:
           app-name: "webapp-poc-cahtbot"   # Tu Web App en Azure
           slot-name: "production"
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE }}  # Secreto que creaste en GitHub
-          package: ./build   # Carpeta generada por npm run build
+          package: ./dist   # <-- Cambiado a dist porque Vite genera dist por defecto
