@@ -34,3 +34,4 @@ jobs:
           slot-name: "production"
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE }}  # Secreto que creaste en GitHub
           package: ./dist   # <-- Cambiado a dist porque Vite genera dist por defecto
+          enable-oryx-build: false   # <--- Esto evita que Azure intente build
